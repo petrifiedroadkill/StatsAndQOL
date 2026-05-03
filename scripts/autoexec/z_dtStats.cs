@@ -16,7 +16,7 @@
 // Note See bottom of file for full log
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //-----------Settings-----------
-$dtStats::version = 10.60;
+$dtStats::version = 10.61;
 //disable stats system
 $dtStats::Enable = $Host::dtStatsEnable $= "" ? ($Host::dtStatsEnable = 1) : $Host::dtStatsEnable;
 if(!$dtStats::Enable){ return;}// so it disables with a restart
@@ -5143,7 +5143,7 @@ function dtStatsGameOver( %game ){
    $dtStats::LastMissionCM = $CurrentMission;
    $dtStats::LastGameType = %game.class;
    $dtStats::LastGameID = $dtStats::gameID;
-
+   $dtStats::leftID++;
    $dtStats::tmMode = $Host::TournamentMode;
 
    if(%game.class $= "CTFGame" || %game.class $= "LCTFGame" || %game.class $= "SCtFGame"  || %game.class $= "ArenaGame" ){
@@ -5738,7 +5738,6 @@ function loadTBMap(%game){
 
 function dtSaveDone(){
    $dtStats::statsSave = 0;
-   $dtStats::leftID++;
    $dtStats::teamOneCapTimes = 0;
    $dtStats::teamTwoCapTimes = 0;
    $dtStats::teamOneCapCount = 0;
